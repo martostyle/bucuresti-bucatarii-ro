@@ -1176,14 +1176,15 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 20px;
+        padding-top: 40px;
+        /* Pushed the logo down a bit logically or adjust as needed */
         height: 100%;
     }
 
     .logo-mobile-menu img {
-        height: 78px;
-        margin-bottom: 40px;
-        /* Matches the centered logo alignment */
+        height: 110px;
+        /* Made the logo noticeably larger */
+        margin-bottom: 30px;
     }
 
     .mobile-nav-links {
@@ -1193,10 +1194,15 @@ body {
         flex-direction: column;
         gap: 30px;
         text-align: center;
-        margin: auto 0;
+        margin: 0;
+        /* Removed auto 0 so it stays closer up */
+        margin-top: 20px;
     }
 
     .mobile-nav-links li a {
+        display: block;
+        /* Gives a bigger touch area */
+        padding: 10px 20px;
         color: var(--charcoal);
         font-size: 1.5rem;
         text-decoration: none;
