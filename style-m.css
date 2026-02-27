@@ -1193,18 +1193,20 @@ body {
     .mobile-menu-close {
         position: absolute;
         top: 20px;
-        right: 20px;
+        left: 15px;
+        /* Matches exact visual position of the hamburger */
         width: 50px;
         height: 50px;
         background: transparent;
         border: none;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
+        /* Aligned left so the X feels natural on touch */
         align-items: center;
         cursor: pointer;
         z-index: 10001;
-        font-size: 4rem;
-        /* Huge font size for the textual X */
+        font-size: 3.5rem;
+        /* Large enough but not overwhelming */
         color: var(--charcoal);
         line-height: 1;
         font-weight: 300;
