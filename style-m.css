@@ -1192,7 +1192,8 @@ body {
     /* Mobile Menu Close Button */
     .mobile-menu-close {
         position: absolute;
-        top: 20px;
+        top: 30px;
+        /* Moved down slightly */
         left: 15px;
         /* Matches exact visual position of the hamburger */
         width: 50px;
