@@ -1013,9 +1013,9 @@ body {
 
     .hero-top-wrapper {
         position: relative;
+        z-index: 10;
         margin: -15px -15px 0 -15px !important;
-        padding: 15px 15px 80px 15px !important;
-        /* Expanded bottom padding so background goes deeper down */
+        padding: 15px 15px 0 15px !important;
     }
 
     .hero-section {
@@ -1034,11 +1034,7 @@ body {
     }
 
     .hero-section::after {
-        display: none;
-        /* Hide default gradient on mobile */
-    }
-
-    .hero-top-wrapper::after {
+        display: block;
         content: '';
         position: absolute;
         top: 0;
@@ -1047,11 +1043,15 @@ body {
         height: 100%;
         background: linear-gradient(to bottom,
                 rgba(26, 26, 26, 0) 0%,
-                rgba(26, 26, 26, 0) 30%,
+                rgba(26, 26, 26, 0.4) 40%,
                 var(--charcoal) 90%,
                 var(--charcoal) 100%);
-        z-index: 1;
+        z-index: 2;
         pointer-events: none;
+    }
+
+    .hero-top-wrapper::after {
+        display: none;
     }
 
     .hero-title {
@@ -1116,8 +1116,8 @@ body {
         display: block !important;
         width: calc(100% + 40px) !important;
         margin-left: -20px !important;
-        margin-top: -50px !important;
-        /* Overlap the hero wrapper so the background sits strictly behind the gallery */
+        margin-top: -80px !important;
+        /* Strongly overlap the hero section so the background sits strictly behind the gallery */
         margin-bottom: 20px !important;
         position: relative !important;
         z-index: 10 !important;
