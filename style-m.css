@@ -1015,8 +1015,8 @@ body {
         position: relative;
         z-index: 10;
         margin: -15px -15px 0 -15px !important;
-        padding: 15px 15px 50px 15px !important;
-        /* Bottom padding to create space below CTA before the gallery starts */
+        padding: 15px 15px 30px 15px !important;
+        /* Padding to clear CTA before background ends */
     }
 
     .hero-section {
@@ -1035,7 +1035,11 @@ body {
     }
 
     .hero-section::after {
-        display: block;
+        display: none;
+        /* Hide default gradient on mobile */
+    }
+
+    .hero-top-wrapper::after {
         content: '';
         position: absolute;
         top: 0;
@@ -1044,15 +1048,11 @@ body {
         height: 100%;
         background: linear-gradient(to bottom,
                 rgba(26, 26, 26, 0) 0%,
-                rgba(26, 26, 26, 0.4) 40%,
-                var(--charcoal) 90%,
+                rgba(26, 26, 26, 0) 70%,
+                var(--charcoal) 98%,
                 var(--charcoal) 100%);
         z-index: 2;
         pointer-events: none;
-    }
-
-    .hero-top-wrapper::after {
-        display: none;
     }
 
     .hero-title {
@@ -1117,8 +1117,8 @@ body {
         display: block !important;
         width: calc(100% + 40px) !important;
         margin-left: -20px !important;
-        margin-top: -45px !important;
-        /* Slight overlap over the background without covering the CTA button */
+        margin-top: -30px !important;
+        /* Matches wrapper bottom padding to tightly fit the gallery against the background edge */
         margin-bottom: 20px !important;
         position: relative !important;
         z-index: 10 !important;
