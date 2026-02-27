@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>București Bucătării Ro | Minimalism Arhitectural</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Oswald:wght@700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+    <!-- Overlay for hover-enlarge effect -->
+    <div id="image-overlay" class="image-overlay">
+        <img id="overlay-img" src="" alt="Enlarged Kitchen">
+    </div>
+
+    <div class="split-screen">
+        <!-- Left Section: Hero -->
+        <section class="hero-section">
+            <nav class="top-nav">
+                <div class="logo"><img src="assets/LOGO_BB.png" alt="BB Logo" class="logo-img"></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Acasă</a></li>
+                    <li><a href="#products">Produse</a></li>
+                    <li><a href="#projects">Proiecte</a></li>
+                    <li><a href="#about">Despre noi</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <video autoplay muted id="hero-video" class="hero-bg-video">
+                <source src="assets/WOMAN1_VIDEO.mp4?v=1" type="video/mp4">
+            </video>
+            <div id="hero-bg-2" class="hero-bg-video"
+                style="background-image: url('assets/background2.jpg'); background-size: cover; background-position: center; opacity: 0; display: none;">
+            </div>
+            <div id="hero-bg-3" class="hero-bg-video"
+                style="background-image: url('assets/background3.png'); background-size: cover; background-position: center; opacity: 0; display: none;">
+            </div>
+
+            <div class="hero-content">
+                <h1 class="hero-title">București<br>Bucătării Ro</h1>
+                <p class="hero-subtitle">Fiți siguri de alegerea dumneavoastră!</p>
+                <div class="usp-text">Doar noi în toată România oferim vizualizarea bucătăriilor direct în casa
+                    dumneavoastră.
+                </div>
+                <div class="cta-wrapper">
+                    <div id="animated-btn-wrapper" style="display: inline-block;">
+                        <button id="project-cta" class="magnetic-btn">Ofertă rapidă</button>
+                    </div>
+                </div>
+
+                <!-- Mobile Gallery (Only visible on Mobile) -->
+                <div class="mobile-gallery-wrapper">
+                    <aside class="gallery-section mobile-gallery">
+                        <div class="gallery-column">
+                            <div class="gallery-inner" id="gallery-loop-mobile">
+                                <!-- Galerija se populează automat din script.js cu până la 33 imagini -->
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+
+            <div class="partner-attribution">
+                Vizualizările sunt realizate de partenerul nostru <a href="https://Realistic-Vision.com"
+                    target="_blank">Realistic-Vision.com</a>
+            </div>
+
+            <div class="reviews-overlay">
+                <div class="glass-card">
+                    <!-- Aici se pune shortcode-ul pluginului Google Reviews -->
+                    <?php echo do_shortcode('[your-google-reviews-shortcode]'); ?>
+
+                    <!-- Aspectul original ca variantă de rezervă -->
+                    <div class="review-header">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating">4.9/5 stele</span>
+                    </div>
+                    <p class="review-text">"Design luxos și sofisticat."</p>
+                    <span class="reviewer">— Google Reviews</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Desktop Gallery (Original Sibling Structure) -->
+        <aside class="gallery-section desktop-gallery">
+            <div class="gallery-column">
+                <div class="gallery-inner" id="gallery-loop-desktop">
+                    <!-- Galerija se populează automat din script.js cu până la 33 imagini -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Quotation Modal -->
+    <div id="quotation-modal" class="modal">
+        <div class="production-badge-floating">
+            <span class="days-num">30</span>
+            <span class="days-text">zile pentru producție și montaj</span>
+        </div>
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 class="modal-title">OBȚINE O OFERTĂ RAPIDĂ</h2>
+                <p class="modal-subtitle">în până la 24 de ore, dar în majoritatea cazurilor în 2 ore</p>
+
+                <form id="quotation-form" action="/wp-admin/admin-post.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="action" value="submit_quotation_form">
+                    <div class="form-grid">
+                        <div class="form-group"><input type="text" name="client_name" placeholder="Nume" required>
+                        </div>
+                        <div class="form-group"><input type="text" name="client_city" placeholder="Oraș" required>
+                        </div>
+                        <div class="form-group"><input type="tel" name="client_phone" placeholder="Telefon" required>
+                        </div>
+                        <div class="form-group"><input type="email" name="client_email" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="upload-requirements">
+                        <div class="requirements-header">
+                            <h3>De ce avem nevoie:</h3>
+                            <a href="https://www.youtube.com/watch?v=JT0ssSXvhGk" target="_blank"
+                                class="video-example-link">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                    <path
+                                        d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                                </svg>
+                                Exemplu video
+                            </a>
+                        </div>
+                        <ul>
+                            <li>1. Atașați o fotografie cu dimensiunile încăperii desenate.</li>
+                            <li>2. Atașați o fotografie a unei schițe cu dulapurile (manuală sau AutoCAD), pentru a
+                                ști de ce modele veți avea nevoie.</li>
+                            <li>3. Atașați o fotografie a unei bucătării care v-a captat atenția - design, culori,
+                                forme, uși.</li>
+                            <li>4. Atașați o fotografie a încăperii, prin care să surprindeți o parte cât mai mare a
+                                locului unde se va afla bucătăria (dacă nu aveți posibilitatea de a face fotografii
+                                în
+                                acest moment, le puteți trimite după ce primiți oferta de preț).</li>
+                        </ul>
+                        <p class="upload-disclaimer">Informațiile complete ne ajută să oferim un preț exact imediat.
+                            Dacă omiteți ceva, vom recupera și vom pune la punct detaliile împreună pe parcurs.</p>
+                    </div>
+                    <div class="upload-section single-upload">
+                        <div class="upload-box full-width" id="upload-box-main">
+                            <div class="custom-file-upload">
+                                <input type="file" name="kitchen_files[]" id="kitchen_files" accept="image/*,.pdf,.dwg"
+                                    style="display: none;" multiple>
+                                <button type="button" class="btn-custom-file"
+                                    onclick="document.getElementById('kitchen_files').click()">Alege
+                                    fișiere</button>
+                                <span class="file-name" id="name-files">Niciun fișier selectat</span>
+                            </div>
+                            <div id="file-previews-container" class="previews-grid"></div>
+                        </div>
+                        <p class="multiple-files-hint">Puteți încărca mai multe fișiere simultan.</p>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="client_message" placeholder="Mesajul dumneavoastră..."></textarea>
+                    </div>
+                    <div class="form-group promo-group">
+                        <input type="text" name="promo_code" placeholder="INTRODU CODUL PENTRU REDUCERE -10%">
+                        <div class="fb-promo-hint">
+                            <small>Obțineți codul apreciind pagina noastră de Facebook, veți vedea codul în postarea
+                                fixată</small>
+                            <a href="https://www.facebook.com/BucurestiBucatarii.ro/" target="_blank"
+                                class="fb-icon-link">
+                                <span class="click-hint">APĂSAȚI</span>
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" class="fb-icon">
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="submit-btn-wrapper">
+                        <button type="submit" class="submit-btn">TRIMITE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
