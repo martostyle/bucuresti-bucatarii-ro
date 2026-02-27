@@ -250,114 +250,111 @@ const initApp = () => {
             animWrapper.classList.remove('paused');
         });
 
-        heroSection.addEventListener('mousemove', (e) => {
-            const heroRect = heroSection.getBoundingClientRect();
-            const heroW = heroRect.width;
+        // Only apply mousemove magnetic tracking if it's NOT a mobile device
+        if (!isMobile) {
+            heroSection.addEventListener('mousemove', (e) => {
+                const heroRect = heroSection.getBoundingClientRect();
+                const heroW = heroRect.width;
 
-            // Относителна X позиция на мишката спрямо hero секцията
-            const relX = e.clientX - heroRect.left;
+                // Относителна X позиция на мишката спрямо hero секцията
+                const relX = e.clientX - heroRect.left;
 
-            // Само 2 зони: 0–40% ЛЯВА (стой) | 41–100% ДЯСНА (гони)
-            const inRight = relX > heroW * 0.40;
+                // Само 2 зони: 0–40% ЛЯВА (стой) | 41–100% ДЯСНА (гони)
+                const inRight = relX > heroW * 0.40;
 
-            if (!inRight) {
-                // ── Лява зона → snap на 0,0 ──
-                if (inChaseZone) {
-                    inChaseZone = false;
-                    snapHome();
+                if (!inRight) {
+                    // ── Лява зона → snap на 0,0 ──
+                    if (inChaseZone) {
+                        inChaseZone = false;
+                        snapHome();
+                    }
+                    return;
                 }
-                return;
-            }
 
-            // ── Дясна зона → магнитен ефект (игривата анимация продължава) ──
-            inChaseZone = true;
+                // ── Дясна зона → магнитен ефект (игривата анимация продължава) ──
+                inChaseZone = true;
 
-            // Оригинален център на бутона (ctaWrapper не се мести)
-            const rect = ctaWrapper.getBoundingClientRect();
-            const origX = rect.left + rect.width / 2;
-            const origY = rect.top + rect.height / 2;
+                // Оригинален център на бутона (ctaWrapper не се мести)
+                const rect = ctaWrapper.getBoundingClientRect();
+                const origX = rect.left + rect.width / 2;
+                const origY = rect.top + rect.height / 2;
 
-            // MAX_MOVE по X = 4× разстоянието от центъра на бутона до 40% границата
-            // (двойно повече от преди)
-            const boundary40 = heroRect.left + heroW * 0.40;
-            const maxMoveX = Math.max((boundary40 - origX) * 8, 320); // 8× дистанция
-            const maxMoveY = 240; // вертикален таван
+                // MAX_MOVE по X = 4× разстоянието от центъра на бутона до 40% границата
+                // (двойно повече от преди)
+                const boundary40 = heroRect.left + heroW * 0.40;
+                const maxMoveX = Math.max((boundary40 - origX) * 8, 320); // 8× дистанция
+                const maxMoveY = 240; // вертикален таван
 
 
 
-            const dxOrig = e.clientX - origX;
-            const dyOrig = e.clientY - origY;
+                const dxOrig = e.clientX - origX;
+                const dyOrig = e.clientY - origY;
 
-            // Директно следи мишката, таван = 2× от 40% границата
-            const targetX = Math.max(-maxMoveX, Math.min(dxOrig, maxMoveX));
-            const targetY = Math.max(-maxMoveY, Math.min(dyOrig, maxMoveY));
+                // Директно следи мишката, таван = 2× от 40% границата
+                const targetX = Math.max(-maxMoveX, Math.min(dxOrig, maxMoveX));
+                const targetY = Math.max(-maxMoveY, Math.min(dyOrig, maxMoveY));
 
-            gsap.to(btnMagnet, {
-                x: targetX,
-                y: targetY,
-                duration: 0.8,
-                ease: "power2.out"
+                gsap.to(btnMagnet, {
+                    x: targetX,
+                    y: targetY,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
             });
-        });
 
-        heroSection.addEventListener('mouseleave', () => {
-            inChaseZone = false;
-            animWrapper.classList.remove('paused');
-            gsap.killTweensOf(btnMagnet);
-            gsap.to(btnMagnet, {
-                x: 0, y: 0,
-                duration: 0.9,
-                ease: "elastic.out(1, 0.3)",
-                onComplete: () => gsap.set(btnMagnet, { clearProps: "transform" })
+            heroSection.addEventListener('mouseleave', () => {
+                inChaseZone = false;
+                animWrapper.classList.remove('paused');
+                gsap.killTweensOf(btnMagnet);
+                gsap.to(btnMagnet, {
+                    x: 0, y: 0,
+                    duration: 0.9,
+                    ease: "elastic.out(1, 0.3)",
+                    onComplete: () => gsap.set(btnMagnet, { clearProps: "transform" })
+                });
             });
-        });
-    }
-    // ── End Magnetic CTA ──────────────────────────────────────────────────────
+        }
 
-    // GSAP Reveals
-    gsap.from('.hero-title', { opacity: 0, y: 50, duration: 1.5, ease: "power4.out", delay: 0.2 });
-    gsap.from('.hero-subtitle', { opacity: 0, y: 30, duration: 1.5, ease: "power4.out", delay: 0.5 });
-    gsap.from('.cta-wrapper', { opacity: 0, scale: 0.8, duration: 1, ease: "back.out(1.7)", delay: 0.8 });
-    gsap.to('.usp-text', { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 1 });
+        const videoBg = document.getElementById('hero-video');
+        const bg2 = document.getElementById('hero-bg-2');
+        const bg3 = document.getElementById('hero-bg-3');
 
-    const videoBg = document.getElementById('hero-video');
-    const bg2 = document.getElementById('hero-bg-2');
-    const bg3 = document.getElementById('hero-bg-3');
-
-    if (videoBg && bg2 && bg3) {
-        // Промяна: Функцията за циклично редуване
-        const startBgCycle = () => {
-            videoBg.addEventListener('ended', () => {
-                // Първо потъмняване (изчакване по-малко от преди 5сек -> 2сек)
-                setTimeout(() => {
-                    // Плавно преливане към Втори бекграунд
-                    gsap.set(bg2, { display: 'block', opacity: 0 });
-                    gsap.to(videoBg, { opacity: 0, duration: 0.8, ease: "power2.inOut", onComplete: () => { videoBg.style.display = 'none'; } });
-                    gsap.to(bg2, { opacity: 1, duration: 0.8, ease: "power2.inOut" });
-
-                    // След 10 сек. преминаване към Трети бекграунд
+        if (videoBg && bg2 && bg3) {
+            // Промяна: Функцията за циклично редуване
+            const startBgCycle = () => {
+                videoBg.addEventListener('ended', () => {
+                    // Първо потъмняване (изчакване по-малко от преди 5сек -> 2сек)
                     setTimeout(() => {
-                        gsap.set(bg3, { display: 'block', opacity: 0 });
-                        gsap.to(bg2, { opacity: 0, duration: 0.8, ease: "power2.inOut", onComplete: () => { bg2.style.display = 'none'; } });
-                        gsap.to(bg3, { opacity: 1, duration: 0.8, ease: "power2.inOut" });
+                        // Плавно преливане към Втори бекграунд
+                        gsap.set(bg2, { display: 'block', opacity: 0 });
+                        gsap.to(videoBg, { opacity: 0, duration: 0.8, ease: "power2.inOut", onComplete: () => { videoBg.style.display = 'none'; } });
+                        gsap.to(bg2, { opacity: 1, duration: 0.8, ease: "power2.inOut" });
 
-                        // След още 10 сек. връщане към Първия (видео)
+                        // След 10 сек. преминаване към Трети бекграунд
                         setTimeout(() => {
-                            gsap.set(videoBg, { display: 'block', opacity: 0 });
-                            videoBg.currentTime = 0;
-                            videoBg.play();
-                            gsap.to(bg3, { opacity: 0, duration: 0.8, ease: "power2.inOut", onComplete: () => { bg3.style.display = 'none'; } });
-                            gsap.to(videoBg, { opacity: 0.5, duration: 0.8, ease: "power2.inOut" });
+                            gsap.set(bg3, { display: 'block', opacity: 0 });
+                            gsap.to(bg2, { opacity: 0, duration: 0.8, ease: "power2.inOut", onComplete: () => { bg2.style.display = 'none'; } });
+                            gsap.to(bg3, { opacity: 1, duration: 0.8, ease: "power2.inOut" });
 
-                            // Цикълът се самоподдържа чрез 'ended' на видеото
+                            // След още 10 сек. връщане към Първия (видео)
+                            setTimeout(() => {
+                                gsap.set(videoBg, { display: 'block', opacity: 0 });
+                                videoBg.currentTime = 0;
+                                videoBg.play();
+                                gsap.to(bg3, { opacity: 0, duration: 0.8, ease: "power2.inOut", onComplete: () => { bg3.style.display = 'none'; } });
+                                gsap.to(videoBg, { opacity: 0.5, duration: 0.8, ease: "power2.inOut" });
+
+                                // Цикълът се самоподдържа чрез 'ended' на видеото
+                            }, 10000);
                         }, 10000);
-                    }, 10000);
-                }, 2000);
-            });
-        };
-        startBgCycle();
-    }
-};
+                    }, 2000);
+                });
+            };
+            startBgCycle();
+        }
+    };
+
+}; // End of initApp
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initApp);
