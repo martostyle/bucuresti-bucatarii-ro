@@ -1205,8 +1205,8 @@ body {
         align-items: center;
         cursor: pointer;
         z-index: 10001;
-        font-size: 3.5rem;
-        /* Large enough but not overwhelming */
+        font-size: 2.5rem;
+        /* Reduced by 30% as per user request */
         color: var(--charcoal);
         line-height: 1;
         font-weight: 300;
