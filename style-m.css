@@ -1015,7 +1015,8 @@ body {
         position: relative;
         z-index: 10;
         margin: -15px -15px 0 -15px !important;
-        padding: 15px 15px 0 15px !important;
+        padding: 15px 15px 50px 15px !important;
+        /* Bottom padding to create space below CTA before the gallery starts */
     }
 
     .hero-section {
@@ -1116,8 +1117,8 @@ body {
         display: block !important;
         width: calc(100% + 40px) !important;
         margin-left: -20px !important;
-        margin-top: -80px !important;
-        /* Strongly overlap the hero section so the background sits strictly behind the gallery */
+        margin-top: -45px !important;
+        /* Slight overlap over the background without covering the CTA button */
         margin-bottom: 20px !important;
         position: relative !important;
         z-index: 10 !important;
