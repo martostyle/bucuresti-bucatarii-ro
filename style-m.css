@@ -1013,8 +1013,8 @@ body {
 
     .hero-top-wrapper {
         position: relative;
-        margin: -15px -15px 0 -15px;
-        padding: 15px 15px 60px 15px;
+        margin: -15px -15px 0 -15px !important;
+        padding: 15px 15px 80px 15px !important;
         /* Expanded bottom padding so background goes deeper down */
     }
 
@@ -1113,14 +1113,14 @@ body {
     }
 
     .mobile-gallery-wrapper {
-        display: block;
-        width: calc(100% + 40px);
-        margin-left: -20px;
-        margin-top: -45px;
+        display: block !important;
+        width: calc(100% + 40px) !important;
+        margin-left: -20px !important;
+        margin-top: -50px !important;
         /* Overlap the hero wrapper so the background sits strictly behind the gallery */
-        margin-bottom: 20px;
-        position: relative;
-        z-index: 10;
+        margin-bottom: 20px !important;
+        position: relative !important;
+        z-index: 10 !important;
     }
 
     .gallery-section.mobile-gallery {
