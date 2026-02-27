@@ -1013,18 +1013,25 @@ body {
 
     .hero-top-wrapper {
         position: relative;
+        flex: 1;
+        /* Stretch to fill available vertical space above gallery */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         z-index: 10;
-        margin: -15px -15px 0 -15px !important;
-        padding: 15px 15px 30px 15px !important;
-        /* Padding to clear CTA before background ends */
+        margin: 0 !important;
+        padding: 50px 15px 40px 15px !important;
+        /* Safe padding to keep text away from edges and button away from gallery */
     }
 
     .hero-section {
         width: 100vw;
         height: auto;
         min-height: 100vh;
-        padding: 15px 15px 80px 15px;
-        flex: none;
+        padding: 0;
+        /* Removing all outer padding to let children span edge-to-edge */
+        display: flex;
+        flex-direction: column;
         background: var(--charcoal);
         /* Lower area solid color */
     }
@@ -1115,11 +1122,10 @@ body {
 
     .mobile-gallery-wrapper {
         display: block !important;
-        width: calc(100% + 40px) !important;
-        margin-left: -20px !important;
-        margin-top: -30px !important;
-        /* Matches wrapper bottom padding to tightly fit the gallery against the background edge */
-        margin-bottom: 20px !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        padding-bottom: 20px !important;
         position: relative !important;
         z-index: 10 !important;
     }
@@ -1129,6 +1135,7 @@ body {
         height: auto;
         border-left: none;
         background: transparent;
+        overflow-x: hidden;
     }
 
     .gallery-inner {
