@@ -1042,7 +1042,7 @@ body {
         justify-content: center;
         z-index: 10;
         margin: 0 !important;
-        padding: 50px 15px 40px 15px !important;
+        padding: 20px 15px 40px 15px !important;
         /* Safe padding to keep text away from edges and button away from gallery */
     }
 
