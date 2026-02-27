@@ -1,5 +1,32 @@
 // Main initialization
 const initApp = () => {
+    /* --- MOBILE MENU TOGGLE --- */
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-fullscreen-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    if (hamburgerMenu && mobileMenuOverlay) {
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+
+            // Prevent body scrolling when menu is open
+            if (mobileMenuOverlay.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    }
     const overlay = document.getElementById('image-overlay');
     const overlayImg = document.getElementById('overlay-img');
 
