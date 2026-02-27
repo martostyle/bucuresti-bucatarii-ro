@@ -748,6 +748,8 @@ body {
     height: 2px;
     background-color: var(--white);
     transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    /* Added slight shadow for visibility over light images */
 }
 
 .mobile-menu-overlay {
@@ -1176,8 +1178,8 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 40px;
-        /* Pushed the logo down a bit logically or adjust as needed */
+        padding-top: 15px;
+        /* Lifted */
         height: 100%;
     }
 
@@ -1332,6 +1334,21 @@ body {
 
     .modal-content::after {
         border-radius: 14px !important;
+    }
+
+    /* Make the close modal hit area much larger for fingers */
+    .close-modal {
+        top: 15px !important;
+        right: 15px !important;
+        width: 44px !important;
+        /* Minimum touch target size */
+        height: 44px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        font-size: 2rem !important;
+        padding: 5px !important;
+        z-index: 2005 !important;
     }
 
     .modal-title {

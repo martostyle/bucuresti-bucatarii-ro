@@ -4,6 +4,7 @@ const initApp = () => {
     const hamburgerMenu = document.getElementById('hamburger-menu');
     const mobileMenuOverlay = document.getElementById('mobile-fullscreen-menu');
     const mobileLinks = document.querySelectorAll('.mobile-link');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
 
     if (hamburgerMenu && mobileMenuOverlay) {
         hamburgerMenu.addEventListener('click', () => {
@@ -26,6 +27,15 @@ const initApp = () => {
                 document.body.style.overflow = 'auto';
             });
         });
+
+        // Close menu via explicit close button
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener('click', () => {
+                hamburgerMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        }
     }
     const overlay = document.getElementById('image-overlay');
     const overlayImg = document.getElementById('overlay-img');
