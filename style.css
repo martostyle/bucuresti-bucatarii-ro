@@ -1008,8 +1008,8 @@ body {
         width: 100vw;
         height: auto;
         min-height: 100vh;
-        padding: 40px 15px 80px 15px;
-        /* Added extra bottom padding */
+        padding: 15px 15px 80px 15px;
+        /* Moved content much higher */
         flex: none;
     }
 
@@ -1027,23 +1027,39 @@ body {
     }
 
     .hero-title {
-        font-size: 3.5rem;
+        font-size: 3.2rem;
+        /* Slightly smaller to save space */
+        margin-bottom: 1rem;
+        /* Tighter gap */
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .usp-text {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        /* Tighter gap before CTA */
     }
 
     .logo-img {
-        height: 65px;
-        /* Made logo slightly smaller to give more space for links */
+        height: 78px;
+        /* Increased by ~20% */
         margin-bottom: 5px;
     }
 
     .top-nav {
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
+        /* Brought menu closer to logo */
+        margin-bottom: 15px;
     }
 
     .nav-links {
-        gap: 8px;
-        /* Pull the menu words closer */
+        gap: 6px;
+        /* Pull the menu words even closer */
         flex-wrap: nowrap;
         /* Force them onto one line if possible */
         justify-content: center;
@@ -1052,9 +1068,15 @@ body {
     }
 
     .nav-links li a {
-        font-size: 0.70rem;
+        font-size: 0.65rem;
         /* Slightly smaller text */
         letter-spacing: 0.02rem;
+    }
+
+    .magnetic-btn {
+        padding: 15px 30px;
+        /* Smaller CTA button for mobile */
+        font-size: 0.8rem;
     }
 
     /* Hide desktop gallery, show mobile one under CTA */
