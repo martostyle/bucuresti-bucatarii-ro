@@ -1014,15 +1014,8 @@ body {
     .hero-top-wrapper {
         position: relative;
         margin: -15px -15px 0 -15px;
-        padding: 15px 15px 35px 15px;
-        /* Added extra bottom padding so background extends more */
-    }
-
-    .mobile-gallery-wrapper {
-        position: relative;
-        z-index: 10;
-        margin-top: -30px;
-        /* Pull the gallery up exactly 30px over the background video */
+        padding: 15px 15px 60px 15px;
+        /* Expanded bottom padding so background goes deeper down */
     }
 
     .hero-section {
@@ -1054,8 +1047,8 @@ body {
         height: 100%;
         background: linear-gradient(to bottom,
                 rgba(26, 26, 26, 0) 0%,
-                rgba(26, 26, 26, 0) 60%,
-                var(--charcoal) 98%,
+                rgba(26, 26, 26, 0) 30%,
+                var(--charcoal) 90%,
                 var(--charcoal) 100%);
         z-index: 1;
         pointer-events: none;
@@ -1123,9 +1116,11 @@ body {
         display: block;
         width: calc(100% + 40px);
         margin-left: -20px;
-        margin-top: 60px;
-        /* Increased spacing as requested */
+        margin-top: -45px;
+        /* Overlap the hero wrapper so the background sits strictly behind the gallery */
         margin-bottom: 20px;
+        position: relative;
+        z-index: 10;
     }
 
     .gallery-section.mobile-gallery {
